@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import para.RestCommons;
 
 //@Execution(ExecutionMode.CONCURRENT)
-public class ExampleWithConcurrent2 {
+public class ExampleWithConcurrent2 extends BaseTest{
     private static Logger logger = LoggerFactory.getLogger(ExampleWithConcurrent2.class);
 
     @Test

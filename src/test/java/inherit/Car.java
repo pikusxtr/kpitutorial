@@ -1,6 +1,7 @@
 package inherit;
 
 import java.util.List;
+import java.util.Optional;
 
 public class Car extends Vehicle {
     private String modelName;
@@ -44,6 +45,10 @@ public class Car extends Vehicle {
 
     public List<String> getOwners() {
         return owners;
+    }
+
+    public Optional<String> getBrandOpt() {
+        return Optional.of(brand);
     }
 
     public void setOwners(List<String> owners) {
