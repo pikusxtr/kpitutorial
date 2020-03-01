@@ -1,18 +1,27 @@
 package para.junit5;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
+import org.junit.jupiter.api.parallel.ResourceLock;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import para.RestCommons;
 
-//@Execution(ExecutionMode.CONCURRENT)
+import static org.junit.jupiter.api.parallel.ResourceAccessMode.READ_WRITE;
+
+@Execution(ExecutionMode.CONCURRENT)
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@ResourceLock(value = "ExampleWithConcurrent2", mode = READ_WRITE)
 public class ExampleWithConcurrent2 extends BaseTest{
     private static Logger logger = LoggerFactory.getLogger(ExampleWithConcurrent2.class);
 
     @Test
     public void parallelStream01() {
         logger.info("test start");
-        logger.info("AAA ---Thread Name= {} --- {}", Thread.currentThread().getName(), System.nanoTime());
+        logger.info("test start");
+        logger.info("AAA ExampleWithConcurrent2 ---Thread Name= {} --- {}", Thread.currentThread().getName(), System.nanoTime());
         RestCommons.sendCountryService("pl");
         logger.info("test end");
     }
@@ -20,15 +29,15 @@ public class ExampleWithConcurrent2 extends BaseTest{
     @Test
     public void parallelStream02() {
         logger.info("test start");
-        logger.info("AAA ---Thread Name= {} --- {}", Thread.currentThread().getName(), System.nanoTime());
+        logger.info("AAA ExampleWithConcurrent2 ---Thread Name= {} --- {}", Thread.currentThread().getName(), System.nanoTime());
         RestCommons.sendSlowServiceMock();
         logger.info("test end");
     }
 
     @Test
-    public void parallelStream03() {
+    public void   parallelStream03() {
         logger.info("test start");
-        logger.info("AAA ---Thread Name= {} --- {}", Thread.currentThread().getName(), System.nanoTime());
+        logger.info("AAA ExampleWithConcurrent2 ---Thread Name= {} --- {}", Thread.currentThread().getName(), System.nanoTime());
         RestCommons.sendSlowServiceMock();
         logger.info("test end");
     }
@@ -36,7 +45,7 @@ public class ExampleWithConcurrent2 extends BaseTest{
     @Test
     public void parallelStream04() {
         logger.info("test start");
-        logger.info("AAA ---Thread Name= {} --- {}", Thread.currentThread().getName(), System.nanoTime());
+        logger.info("AAA ExampleWithConcurrent2 ---Thread Name= {} --- {}", Thread.currentThread().getName(), System.nanoTime());
         RestCommons.sendSlowServiceMock();
         logger.info("test end");
     }
@@ -44,7 +53,7 @@ public class ExampleWithConcurrent2 extends BaseTest{
     @Test
     public void parallelStream05() {
         logger.info("test start");
-        logger.info("AAA ---Thread Name= {} --- {}", Thread.currentThread().getName(), System.nanoTime());
+        logger.info("AAA ExampleWithConcurrent2 ---Thread Name= {} --- {}", Thread.currentThread().getName(), System.nanoTime());
         RestCommons.sendCountryService("au");
         logger.info("test end");
     }
@@ -52,7 +61,7 @@ public class ExampleWithConcurrent2 extends BaseTest{
     @Test
     public void parallelStream06() {
         logger.info("test start");
-        logger.info("AAA ---Thread Name= {} --- {}", Thread.currentThread().getName(), System.nanoTime());
+        logger.info("AAA ExampleWithConcurrent2 ---Thread Name= {} --- {}", Thread.currentThread().getName(), System.nanoTime());
         RestCommons.sendSlowServiceMock();
         logger.info("test end");
     }
@@ -60,7 +69,7 @@ public class ExampleWithConcurrent2 extends BaseTest{
     @Test
     public void parallelStream07() {
         logger.info("test start");
-        logger.info("AAA ---Thread Name= {} --- {}", Thread.currentThread().getName(), System.nanoTime());
+        logger.info("AAA ExampleWithConcurrent2 ---Thread Name= {} --- {}", Thread.currentThread().getName(), System.nanoTime());
         RestCommons.sendCountryService("ru");
         logger.info("test end");
     }

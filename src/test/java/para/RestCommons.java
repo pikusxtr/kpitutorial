@@ -7,7 +7,7 @@ import static io.restassured.RestAssured.given;
 
 public class RestCommons {
     private static final String baseUrl = "https://restcountries.eu/rest/v2/alpha/";
-    private static final String baseUrlSlow = "http://slowwly.robertomurray.co.uk/delay/3000/url/http://www.google.co.uk";
+    private static final String baseUrlSlow = "http://slowwly.robertomurray.co.uk/delay/4000/url/http://www.google.co.uk";
     private static Logger logger = LoggerFactory.getLogger(RestCommons.class);
 
     public static void sendCountryService(String countryCode) {

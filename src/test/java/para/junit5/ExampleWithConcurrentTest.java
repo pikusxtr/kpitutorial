@@ -1,27 +1,19 @@
 package para.junit5;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.parallel.Execution;
-import org.junit.jupiter.api.parallel.ExecutionMode;
-import org.junit.jupiter.api.parallel.ResourceLock;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import para.RestCommons;
 
-import static org.junit.jupiter.api.parallel.ResourceAccessMode.READ_WRITE;
-
-@Execution(ExecutionMode.CONCURRENT)
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
-@ResourceLock(value = "ExampleWithConcurrent4", mode = READ_WRITE)
-public class ExampleWithConcurrent4 extends BaseTest{
-    private static Logger logger = LoggerFactory.getLogger(ExampleWithConcurrent4.class);
+//@Execution(ExecutionMode.CONCURRENT)
+public class ExampleWithConcurrentTest {
+    private static Logger logger = LoggerFactory.getLogger(ExampleWithConcurrentTest.class);
 
     @Test
     public void parallelStream01() {
         logger.info("test start");
         logger.info("AAA ---Thread Name= {} --- {}", Thread.currentThread().getName(), System.nanoTime());
-        RestCommons.sendCountryService("pl");
+        RestCommons.sendSlowServiceMock();
         logger.info("test end");
     }
 
@@ -29,7 +21,7 @@ public class ExampleWithConcurrent4 extends BaseTest{
     public void parallelStream02() {
         logger.info("test start");
         logger.info("AAA ---Thread Name= {} --- {}", Thread.currentThread().getName(), System.nanoTime());
-        RestCommons.sendSlowServiceMock();
+        RestCommons.sendCountryService("de");
         logger.info("test end");
     }
 
@@ -53,7 +45,7 @@ public class ExampleWithConcurrent4 extends BaseTest{
     public void parallelStream05() {
         logger.info("test start");
         logger.info("AAA ---Thread Name= {} --- {}", Thread.currentThread().getName(), System.nanoTime());
-        RestCommons.sendSlowServiceMock();
+        RestCommons.sendCountryService("au");
         logger.info("test end");
     }
 
@@ -61,7 +53,7 @@ public class ExampleWithConcurrent4 extends BaseTest{
     public void parallelStream06() {
         logger.info("test start");
         logger.info("AAA ---Thread Name= {} --- {}", Thread.currentThread().getName(), System.nanoTime());
-        RestCommons.sendSlowServiceMock();
+        RestCommons.sendCountryService("sk");
         logger.info("test end");
     }
 

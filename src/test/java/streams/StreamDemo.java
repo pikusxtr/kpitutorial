@@ -6,11 +6,14 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
@@ -59,7 +62,8 @@ public class StreamDemo {
 
     @Test
     void evenNumbersTest() {
-        List<Integer> integerList = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        List<Integer> integerList = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 4, 6,10, 13, 10, 2, 11, 17);
+        List<Integer> integerListBasic = Arrays.asList(1, 2,3);
         Integer evenDoubleSum = integerList.stream()
                 .filter(integer -> integer % 2 == 0)
                 .mapToInt(integer -> integer * 2)
@@ -73,11 +77,46 @@ public class StreamDemo {
         Double evenDoubleMax = integerList.stream()
                 .filter(integer -> integer % 2 == 0)
                 .mapToDouble(integer -> integer * 3)
+                .max()
+                .orElse(0);
+        Double evenDoubleAvg = integerList.stream()
+                .filter(integer -> integer % 2 == 0)
+                .mapToDouble(integer -> integer * 3)
                 .average()
                 .orElse(0);
+
+        Double evenDoubleAvg2 = integerList.stream()
+                .filter(integer -> integer % 2 == 0)
+                .map(BigDecimal::new)
+                .reduce(BigDecimal.ZERO, BigDecimal::add)
+                .doubleValue();
+
+
+//        Double evenDoubleAvg3 = integerListBasic.stream()
+//                .map(BigDecimal::new)
+//                .reduce(BigDecimal.ZERO, (bigDecimal, bigDecimal2) -> bigDecimal.divide(BigDecimal.valueOf(integerList.size())).add(bigDecimal2.divide(BigDecimal.valueOf(integerList.size())))  )
+//                .doubleValue();
+
+        Double evenDoubleAvg4 = integerListBasic.stream()
+                .map(BigDecimal::new)
+                .reduce(BigDecimal.ZERO, (bigDecimal, bigDecimal2) -> bigDecimal.divide(BigDecimal.valueOf(integerListBasic.size()),5, RoundingMode.HALF_DOWN ).add(bigDecimal2.divide(BigDecimal.valueOf(integerListBasic.size()), 5, RoundingMode.HALF_DOWN))  )
+                .doubleValue();
+        Double evenDoubleAvg5 = integerListBasic.stream()
+                .map(BigDecimal::new)
+                .reduce(BigDecimal.ZERO, (bigDecimal, bigDecimal2) -> bigDecimal.add(bigDecimal2).add(BigDecimal.ONE))
+                .doubleValue();
+        List<Integer>  intListDistinct = integerList.stream()
+                .distinct()
+                .collect(Collectors.toList());
 
         logger.info("evenDoubleSum={}", evenDoubleSum);
         logger.info("evenDoubleSum2={}", evenDoubleSum2);
         logger.info("evenDoubleMax={}", evenDoubleMax);
+        logger.info("evenDoubleAvg={}", evenDoubleAvg);
+        logger.info("evenDoubleAvg2={}", evenDoubleAvg2);
+//        logger.info("evenDoubleAvg3={}", evenDoubleAvg3);
+        logger.info("evenDoubleAvg4={}", evenDoubleAvg4);
+        logger.info("evenDoubleAvg5={}", evenDoubleAvg5);
+        logger.info("intDistinct={}", intListDistinct);
     }
 }

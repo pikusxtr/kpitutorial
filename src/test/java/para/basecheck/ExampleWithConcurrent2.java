@@ -1,29 +1,25 @@
-package para.junit5;
+package para.basecheck;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
-import org.junit.jupiter.api.parallel.ResourceLock;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import para.RestCommons;
 
-import static org.junit.jupiter.api.parallel.ResourceAccessMode.READ_WRITE;
-
 @Execution(ExecutionMode.CONCURRENT)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-@ResourceLock(value = "ExampleWithConcurrent4", mode = READ_WRITE)
-public class ExampleWithConcurrent4 extends BaseTest{
-    private static Logger logger = LoggerFactory.getLogger(ExampleWithConcurrent4.class);
+public class ExampleWithConcurrent2 extends BaseTest {
+    private static Logger logger = LoggerFactory.getLogger(ExampleWithConcurrent2.class);
 
-    @Test
-    public void parallelStream01() {
-        logger.info("test start");
-        logger.info("AAA ---Thread Name= {} --- {}", Thread.currentThread().getName(), System.nanoTime());
-        RestCommons.sendCountryService("pl");
-        logger.info("test end");
-    }
+//    @Test
+//    public void parallelStream01() {
+//        logger.info("test start");
+//        logger.info("AAA ---Thread Name= {} --- {}", Thread.currentThread().getName(), System.nanoTime());
+//        RestCommons.sendCountryService("pl");
+//        logger.info("test end");
+//    }
 
     @Test
     public void parallelStream02() {
@@ -53,7 +49,7 @@ public class ExampleWithConcurrent4 extends BaseTest{
     public void parallelStream05() {
         logger.info("test start");
         logger.info("AAA ---Thread Name= {} --- {}", Thread.currentThread().getName(), System.nanoTime());
-        RestCommons.sendSlowServiceMock();
+        RestCommons.sendCountryService("au");
         logger.info("test end");
     }
 

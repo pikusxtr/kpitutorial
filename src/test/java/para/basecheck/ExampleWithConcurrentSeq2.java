@@ -1,27 +1,30 @@
-package para.junit5;
+package para.basecheck;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import para.RestCommons;
 
 //@Execution(ExecutionMode.CONCURRENT)
-public class ExampleWithConcurrent {
-    private static Logger logger = LoggerFactory.getLogger(ExampleWithConcurrent.class);
+//@TestInstance(TestInstance.Lifecycle.PER_METHOD)
+@Disabled
+public class ExampleWithConcurrentSeq2 extends BaseTest {
+    private static Logger logger = LoggerFactory.getLogger(ExampleWithConcurrentSeq2.class);
 
-    @Test
-    public void parallelStream01() {
-        logger.info("test start");
-        logger.info("AAA ---Thread Name= {} --- {}", Thread.currentThread().getName(), System.nanoTime());
-        RestCommons.sendSlowServiceMock();
-        logger.info("test end");
-    }
+//    @Test
+//    public void parallelStream01() {
+//        logger.info("test start");
+//        logger.info("AAA ---Thread Name= {} --- {}", Thread.currentThread().getName(), System.nanoTime());
+//        RestCommons.sendCountryService("pl");
+//        logger.info("test end");
+//    }
 
     @Test
     public void parallelStream02() {
         logger.info("test start");
         logger.info("AAA ---Thread Name= {} --- {}", Thread.currentThread().getName(), System.nanoTime());
-        RestCommons.sendCountryService("de");
+        RestCommons.sendSlowServiceMock();
         logger.info("test end");
     }
 
@@ -53,7 +56,7 @@ public class ExampleWithConcurrent {
     public void parallelStream06() {
         logger.info("test start");
         logger.info("AAA ---Thread Name= {} --- {}", Thread.currentThread().getName(), System.nanoTime());
-        RestCommons.sendCountryService("sk");
+        RestCommons.sendSlowServiceMock();
         logger.info("test end");
     }
 

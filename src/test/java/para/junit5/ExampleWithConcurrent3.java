@@ -1,11 +1,19 @@
 package para.junit5;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
+import org.junit.jupiter.api.parallel.ResourceLock;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import para.RestCommons;
 
-//@Execution(ExecutionMode.CONCURRENT)
+import static org.junit.jupiter.api.parallel.ResourceAccessMode.READ_WRITE;
+
+@Execution(ExecutionMode.CONCURRENT)
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@ResourceLock(value = "ExampleWithConcurrent3", mode = READ_WRITE)
 public class ExampleWithConcurrent3 extends BaseTest{
     private static Logger logger = LoggerFactory.getLogger(ExampleWithConcurrent3.class);
 
@@ -65,5 +73,75 @@ public class ExampleWithConcurrent3 extends BaseTest{
         logger.info("test end");
     }
 
+    @Test
+    public void parallelStream08() {
+        logger.info("test start");
+        logger.info("AAA ---Thread Name= {} --- {}", Thread.currentThread().getName(), System.nanoTime());
+        RestCommons.sendCountryService("au");
+        logger.info("test end");
+    }
 
+    @Test
+    public void parallelStream09() {
+        logger.info("test start");
+        logger.info("AAA ---Thread Name= {} --- {}", Thread.currentThread().getName(), System.nanoTime());
+        RestCommons.sendSlowServiceMock();
+        logger.info("test end");
+    }
+
+    @Test
+    public void parallelStream10() {
+        logger.info("test start");
+        logger.info("AAA ---Thread Name= {} --- {}", Thread.currentThread().getName(), System.nanoTime());
+        RestCommons.sendSlowServiceMock();
+        logger.info("test end");
+    }
+
+    @Test
+    public void parallelStream11() {
+        logger.info("test start");
+        logger.info("AAA ---Thread Name= {} --- {}", Thread.currentThread().getName(), System.nanoTime());
+        RestCommons.sendSlowServiceMock();
+        logger.info("test end");
+    }
+
+    @Test
+    public void parallelStream12() {
+        logger.info("test start");
+        logger.info("AAA ---Thread Name= {} --- {}", Thread.currentThread().getName(), System.nanoTime());
+        RestCommons.sendSlowServiceMock();
+        logger.info("test end");
+    }
+
+    @Test
+    public void parallelStream13() {
+        logger.info("test start");
+        logger.info("AAA ---Thread Name= {} --- {}", Thread.currentThread().getName(), System.nanoTime());
+        RestCommons.sendSlowServiceMock();
+        logger.info("test end");
+    }
+
+    @Test
+    public void parallelStream14() {
+        logger.info("test start");
+        logger.info("AAA ---Thread Name= {} --- {}", Thread.currentThread().getName(), System.nanoTime());
+        RestCommons.sendSlowServiceMock();
+        logger.info("test end");
+    }
+
+    @Test
+    public void parallelStream15() {
+        logger.info("test start");
+        logger.info("AAA ---Thread Name= {} --- {}", Thread.currentThread().getName(), System.nanoTime());
+        RestCommons.sendSlowServiceMock();
+        logger.info("test end");
+    }
+
+    @Test
+    public void parallelStream16() {
+        logger.info("test start");
+        logger.info("AAA ---Thread Name= {} --- {}", Thread.currentThread().getName(), System.nanoTime());
+        RestCommons.sendSlowServiceMock();
+        logger.info("test end");
+    }
 }
